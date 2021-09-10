@@ -13,7 +13,7 @@ function DonutChart() {
     const [chartData, setChartData] = useState<ChartData>({ labels: [], series: [] });
 
     useEffect(() => {
-        axios.get(" httpsz://sds3-ms.herokuapp.com/sales/sum-by-seller").then(response => {
+        axios.get("https://sds3-ms.herokuapp.com/sales/sum-by-seller").then(response => {
             const data = response.data as SaleSum[];
             const myLables = data.map(x => x.sellerName);
             const mySeries = data.map(x => x.sum);
