@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { SaleSum } from 'types/sales';
+import { BASE_URL } from 'utils/requests';
 
 type ChartData = {
     labels: string[];
@@ -13,7 +14,7 @@ function DonutChart() {
     const [chartData, setChartData] = useState<ChartData>({ labels: [], series: [] });
 
     useEffect(() => {
-        axios.get("https://sds3-ms.herokuapp.com/sales/sum-by-seller").then(response => {
+        axios.get(`${BASE_URL}/sales/sum-by-seller`).then(response => {
             const data = response.data as SaleSum[];
             const myLables = data.map(x => x.sellerName);
             const mySeries = data.map(x => x.sum);
